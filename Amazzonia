@@ -1,0 +1,18 @@
+#Lezione 2021_03_31 
+install.packages("raster")
+library(raster)
+p224r63_2011<- brick("data/p224r63_2011_masked.grd")
+p224r63_1988<- brick("data/p224r63_1988_masked.grd")
+plot(p224r63_2011)
+plot(p224r63_1988)
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
+#infrarosso associato alla componente "red"
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+#inserisco un vettore perchè ho 4 elementi
+pdf("multitemp.pdf")#per uscire da R si usano le ""
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")#effetto con maggior "rumore" corpuscolato che si vede perchè la funzione logica di "hist" lo evidenzia
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+dev.off()#impacchetta 
